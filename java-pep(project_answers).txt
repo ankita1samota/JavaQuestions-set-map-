@@ -1,0 +1,559 @@
+ERROR IDENTIFICATION
+===================
+
+1.Error: HashSet does not support indexed access (no get() method).
+//The code will result in a compilation error because HashSet does not have a method get(0) to access elements by index.
+
+2.Error: get() in HashMap takes only one parameter, but map.get(1, "One") is incorrect.
+//The code will result in a compilation error because the get() method of HashMap only takes one argument
+ (the key) and does not accept a default value.
+
+3.Error: TreeMap does not allow null keys, leading to NullPointerException.
+
+4.No error: HashSet allows null values. Output: [null].
+
+5.Error: ConcurrentModificationException occurs when modifying a collection during iteration.
+
+6.Error: TreeSet does not allow null values and throws NullPointerException.
+
+7.Error: list.add("D") throws UnsupportedOperationException because Arrays.asList() creates a fixed-size list.
+
+8.No error: But the output order is unpredictable since HashMap does not maintain insertion order.
+
+9.No error: Returns null for missing keys.
+
+10.No error: Output is sorted {1=One, 2=Two, 3=Three}.
+
+11.No error,output: [A, 1]
+
+12.The code will result in a compile-time error because you're trying to use a String ("1") as the key, but the HashMap is declared with Integer keys.
+
+13.No compilation error,returns 1 as output
+
+14.Error: EnumMap does not allow null keys.
+//The code will result in a NullPointerException at runtime
+
+15.No error: Overwrites the previous value, size remains 1.
+
+
+OUTPUT QUESTIONS
+================
+
+1.OUTPUT:
+{115=Brown, 101=Red, 102=Yellow, 103=Green, 120=Purple}
+
+2.OUTPUT:
+{101=Red, 102=Yellow, 103=Green}
+
+3.OUTPUT:
+{B=Boy, C=Element}
+
+4.OUTPUT:
+      Blue
+      true
+      false
+
+5.
+d){A=1, B=2, C=3}
+
+6.
+ a
+Explanation: keySet() method returns a set containing all the keys used in the invoking map.
+ Here keys are characters A, B & C. 1, 2, 3 are the values given to these keys.
+
+7.
+ b
+Explanation: obj.get(“B”) method is used to obtain the value associated with key “B”, which is 2.
+
+
+8.
+d
+Explanation: obj.entrySet() method is used to obtain a set that contains the entries in the map. 
+This method provides set view of the invoking map.
+
+
+9.
+Map elements: {}
+
+10.
+a:100
+b:200
+c:300
+d:400
+
+11.
+{a=ferrari}
+
+12.
+{a=audi, a=ferrari}
+
+13.
+NullPointerException
+TreeMap does not any null key or null value.
+
+14.
+e d c b a -1
+
+15.
+[1, 1, 3, 2]
+
+
+
+
+
+
+SCENARION BASED QUESTIONS
+=========================
+
+1.
+Solution
+The java.util.concurrent.locks package provides classes that implement read/write locks where the read lock can be executed in parallel by multiple threads and the write lock can be held by only a single thread. The ReadWriteLock interface maintains a pair of associated locks, one for read-only and one for writing. The readLock( ) may be held simultaneously by multiple reader threads, while the writeLock( ) is exclusive. In general, this implementation improves performance and scalability when compared to the mutex locks (i.e. via synchronized key word) when
+
+When There Are More Read Operations and The Duration of Each Read Is Longer Compared to Write Operations and Their Duration.
+The Performance Also Depends on The Machine You Are Running the Code On, Especially If It Has Multi-Core Processors, As It Allows for Better Parallelism.
+Caching.java
+
+import java.math.BigDecimal;  
+import java.util.HashMap;  
+import java.util.Map;  
+import java.util.concurrent.ExecutorService;  
+import java.util.concurrent.Executors;  
+import java.util.concurrent.TimeUnit;  
+import java.util.concurrent.locks.ReadWriteLock;  
+import java.util.concurrent.locks.ReentrantReadWriteLock;  
+public class Caching {  
+    public static void main(String[] args) throws InterruptedException {  
+        ExecutorService executor = Executors.newFixedThreadPool(2);  
+        Map<String, BigDecimal> map = new HashMap<>();  
+        ReadWriteLock lock = new ReentrantReadWriteLock();  
+        executor.submit(() -> {  
+            lock.writeLock().lock();  
+            System.out.println("Writing ....." );  
+            try {  
+                try {  
+                    TimeUnit.SECONDS.sleep(3); //emulating update  
+                } catch (Exception e) {  
+                    e.printStackTrace();  
+                }  
+                map.put("stock-ABC", BigDecimal.valueOf(12.35));  
+            } finally {  
+                lock.writeLock().unlock();  
+            }  
+        });  
+        Runnable readTask = () -> {  
+            lock.readLock().lock();  
+            try {  
+                System.out.println("Reading ....." + map.get("stock-ABC"));  
+                try {  
+                    TimeUnit.SECONDS.sleep(1);  
+                } catch (Exception e) {  
+                    e.printStackTrace();  
+                }  
+            } finally {  
+                lock.readLock().unlock();  
+            }  
+        };  
+        //multiple reads  
+        executor.submit(readTask);  
+        executor.submit(readTask);  
+        //...............other code. As it keeps running.  
+        //executor.shutdown();  
+    }  
+}  
+
+Output:
+Writing .....
+Reading .....12.35
+Reading .....12.35
+
+
+
+
+2.Detect Duplicate Entries in a List
+Problem: Identify duplicate student names from a list.
+
+Solution:
+java
+Copy
+Edit
+import java.util.*;
+
+public class DuplicateStudents {
+    public static void main(String[] args) {
+        List<String> students = Arrays.asList("Alice", "Bob", "Charlie", "Alice", "David", "Bob");
+        Set<String> uniqueNames = new HashSet<>();
+        Set<String> duplicates = new HashSet<>();
+
+        for (String student : students) {
+            if (!uniqueNames.add(student)) { // If adding fails, it's a duplicate
+                duplicates.add(student);
+            }
+        }
+
+        System.out.println("Duplicate students: " + duplicates);
+    }
+}
+Output:
+
+less
+Copy
+Edit
+Duplicate students: [Alice, Bob]
+
+3.
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Map<String, Integer> map = new HashMap<>();
+        int N = sc.nextInt();
+        
+        for (int i = 0; i < N; i++) {
+            int q = sc.nextInt();
+            String x;
+            
+            if (q == 1) {
+                int y = sc.nextInt();
+                x = sc.next();
+                map.put(x, map.getOrDefault(x, 0) + y);
+            } 
+            else if (q == 2) {
+                x = sc.next();
+                map.remove(x);
+            } 
+            else {
+                x = sc.next();
+                if (map.containsKey(x)) {
+                    System.out.println(map.get(x));
+                } else {
+                    System.out.println(0);
+                }
+            }
+        }
+        
+        sc.close();
+    }
+}
+
+
+4.
+import java.util.*;
+
+public class Solution {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        Map<String, Integer> phoneBook = new HashMap<>();
+        
+        for (int i = 0; i < n; i++) {
+            String name = sc.next();
+            int phone = sc.nextInt();
+            phoneBook.put(name, phone);
+        }
+        
+        while (sc.hasNext()) {
+            String query = sc.next();
+            if (phoneBook.containsKey(query)) {
+                System.out.println(query + "=" + phoneBook.get(query));
+            } else {
+                System.out.println("Not found");
+            }
+        }
+        
+        sc.close();
+    }
+}
+
+
+
+5.
+import java.util.*;
+
+public class Solution {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int q = sc.nextInt();  
+        Set<Integer> set = new HashSet<>();  
+
+        for (int i = 0; i < q; i++) {
+            int type = sc.nextInt();
+            int x = sc.nextInt();
+
+            if (type == 1) {
+                set.add(x);  
+            } else if (type == 2) {
+                set.remove(x);  
+            } else if (type == 3) {
+                System.out.println(set.contains(x) ? "Yes" : "No");  
+            }
+        }
+        
+        sc.close();
+    }
+}
+
+
+
+6.
+import java.util.*;
+
+public class Solution {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        Set<Integer> set1 = new HashSet<>();
+        for (int i = 0; i < n; i++) {
+            set1.add(sc.nextInt());
+        }
+
+        int m = sc.nextInt();
+        Set<Integer> set2 = new HashSet<>();
+        for (int i = 0; i < m; i++) {
+            set2.add(sc.nextInt());
+        }
+
+        int queries = sc.nextInt();
+        for (int i = 0; i < queries; i++) {
+            String operation = sc.next();
+
+            if (operation.equals("union")) {
+                set1.addAll(set2);
+            } else if (operation.equals("intersection")) {
+                set1.retainAll(set2);
+            } else if (operation.equals("difference")) {
+                set1.removeAll(set2);
+            } else if (operation.equals("symmetric_difference")) {
+                Set<Integer> temp = new HashSet<>(set1);
+                temp.removeAll(set2);
+                set2.removeAll(set1);
+                set1.clear();
+                set1.addAll(temp);
+                set1.addAll(set2);
+            }
+        }
+
+        for (int num : set1) {
+            System.out.print(num + " ");
+        }
+
+        sc.close();
+    }
+}
+
+
+7.
+class Solution {
+    public List<Integer> twoOutOfThree(int[] nums1, int[] nums2, int[] nums3) {
+        int[] s1 = get(nums1), s2 = get(nums2), s3 = get(nums3);
+        List<Integer> ans = new ArrayList<>();
+        for (int i = 1; i <= 100; ++i) {
+            if (s1[i] + s2[i] + s3[i] > 1) {
+                ans.add(i);
+            }
+        }
+        return ans;
+    }
+
+    private int[] get(int[] nums) {
+        int[] s = new int[101];
+        for (int num : nums) {
+            s[num] = 1;
+        }
+        return s;
+    }
+}
+
+8.
+class MyHashMap {
+    private int[] data = new int[1000001];
+
+    public MyHashMap() {
+        Arrays.fill(data, -1);
+    }
+
+    public void put(int key, int value) {
+        data[key] = value;
+    }
+
+    public int get(int key) {
+        return data[key];
+    }
+
+    public void remove(int key) {
+        data[key] = -1;
+    }
+}
+
+/**
+ * Your MyHashMap object will be instantiated and called as such:
+ * MyHashMap obj = new MyHashMap();
+ * obj.put(key,value);
+ * int param_2 = obj.get(key);
+ * obj.remove(key);
+ */
+ 
+ 
+9.
+class Solution {
+    public int[] intersect(int[] nums1, int[] nums2) {
+        int[] cnt = new int[1001];
+        for (int x : nums1) {
+            ++cnt[x];
+        }
+        List<Integer> ans = new ArrayList<>();
+        for (int x : nums2) {
+            if (cnt[x]-- > 0) {
+                ans.add(x);
+            }
+        }
+        return ans.stream().mapToInt(Integer::intValue).toArray();
+    }
+}
+
+
+10.
+class Solution {
+    public List<String> findAndReplacePattern(String[] words, String pattern) {
+        List<String> ans = new ArrayList<>();
+        for (String word : words) {
+            if (match(word, pattern)) {
+                ans.add(word);
+            }
+        }
+        return ans;
+    }
+
+    private boolean match(String s, String t) {
+        int[] m1 = new int[128];
+        int[] m2 = new int[128];
+        for (int i = 0; i < s.length(); ++i) {
+            char c1 = s.charAt(i);
+            char c2 = t.charAt(i);
+            if (m1[c1] != m2[c2]) {
+                return false;
+            }
+            m1[c1] = i + 1;
+            m2[c2] = i + 1;
+        }
+        return true;
+    }
+}
+
+
+
+
+
+
+
+
+
+MCQS
+====
+
+1. a) Hash table: A hash table stores data in key-value pairs, allowing efficient retrieval by key.
+
+2. b) HashMap: HashMap provides an implementation of the Map interface and stores data as key-value pairs.
+
+3. c) clear(): The clear() method removes all key-value pairs from a map.
+
+4. b) get(): The get() method retrieves the value associated with the specified key in a map.
+
+5. d) keySet(): The keySet() method returns a set of all the keys in a map.
+
+6. a) put(): The put() method adds a key-value pair to a map.
+
+7. b) HashSet: HashSet implements the Set interface, storing unique elements with no specific order.
+
+8. a) add(): The add() method is used to insert an element into a HashSet.
+
+9. c) LinkedHashMap: LinkedHashMap stores key-value pairs and maintains the order of insertion.
+
+10. b) Hashtable: Hashtable stores key-value pairs but does not allow null keys or values and is synchronized.
+
+11. b) TreeSet: TreeSet implements a Set interface that stores elements in a sorted order.
+
+12. c) LinkedHashSet: LinkedHashSet stores unique elements and maintains the order of insertion.
+
+13. d) contains(): The contains() method checks if a particular element exists in a Set.
+
+14. b) LinkedHashMap: LinkedHashMap maintains the order of insertion and stores key-value pairs.
+
+15. c) ConcurrentHashMap: ConcurrentHashMap allows thread-safe operations with high performance.
+
+16. d) Arrays: Arrays provide a fixed-size collection that doesn’t support adding or removing elements.
+
+17. c) HashSet is unsorted, while TreeSet is sorted: HashSet does not maintain order, while TreeSet keeps elements sorted.
+
+18. d) TreeSet: TreeSet does not allow duplicate elements and stores them in sorted order.
+
+19. b) ArrayList: ArrayList is best for frequent random access but is inefficient for search operations.
+
+20. b) HashMap: HashMap is commonly used to store key-value pairs for fast lookups in Java.
+
+21. c) NavigableMap: TreeMap implements NavigableMap to allow navigation through key-value pairs in sorted order.
+
+22. d) CopyOnWriteArraySet: CopyOnWriteArraySet is thread-safe and best for performance under heavy read operations.
+
+23. c) ConcurrentHashMap: ConcurrentHashMap allows safe operations in a multi-threaded environment.
+
+24. c) Hashtable: Hashtable is synchronized and thread-safe but slower than newer alternatives.
+
+25. b) HashMap: HashMap offers fast performance for insertions and lookups, but it is not synchronized.
+
+26. b) CopyOnWriteArrayList: CopyOnWriteArrayList allows safe modification and access in multi-threaded environments.
+
+27. b) HashSet: HashSet stores unique elements with no ordering guarantee and provides fast lookups.
+
+28. a) equals(): The equals() method compares two sets for equality based on their elements.
+
+29. b) TreeMap: TreeMap stores keys in sorted order and allows for efficient searching and navigation.
+
+30. c) Stack: A Stack follows the Last-In-First-Out (LIFO) principle, where the last added element is the30.rst to be removed.
+
+31. b) The old value is replaced with the new one: In a HashMap, inserting a duplicate key will replace the old value with the new one.
+
+32. b) keySet(): keySet() returns a set containing all keys present in the map.
+
+33. c) add(): The add() method is used to insert an element into a Set.
+
+34. c) PriorityQueue: PriorityQueue stores elements in order based on their priority.
+
+35. c) ConcurrentHashMap: ConcurrentHashMap offers thread-safe access without blocking.
+
+36. b) TreeSet: TreeSet sorts elements and ensures uniqueness, making it suitable for sorted data storage.
+
+37. b) TreeMap: TreeMap stores keys in natural order, which ensures sorted data.
+
+38. b) TreeMap: TreeMap stores keys in sorted order and is used when order is important.
+
+39. b) TreeSet: TreeSet stores unique elements in sorted order, preventing duplicates.
+
+40. b) remove(): The remove() method is used to delete an element from a Set.
+
+41. a) clear(): The clear() method removes all key-value pairs from a Map.
+
+42. c) put(): The put() method is used to insert or update a key-value pair in a Map.
+
+43. b) TreeSet: TreeSet stores elements in sorted order and ensures uniqueness.
+
+44. b) TreeSet: TreeSet stores unique elements in a sorted order, unlike HashSet.
+
+45. b) LinkedHashMap: LinkedHashMap preserves insertion order while storing key-value pairs.
+
+46. b) One: A TreeSet allows only one null element because it must store the elements in a sorted order.
+
+47. c) LinkedHashSet: LinkedHashSet ensures uniqueness and maintains the order of elements.
+
+48. b) LinkedHashMap: LinkedHashMap maintains the order of insertion and allows key-value pairs.
+
+49. b) HashMap: HashMap is preferred for high-performance operations and quick retrieval.
+
+50. c) A Set of key-value pairs: The entrySet() method returns a set of key-value pairs from a Map.
+
+
+
+
+
+
