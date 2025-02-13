@@ -1,0 +1,972 @@
+1.inheritance & polymorphism
+2.encapsulation & abstraction
+3.string and pear classes
+4.exception handling
+5.JUnit in java
+//all topics to be include
+
+6.arrays in java
+7.collection in java
+8.file handling in java
+9.JDBC
+10.github & loggers in java
+
+//presentation
+
+//questionaries(100 questions) & feedback
+
+-error identification(30)/4
+-output questions(30)/4
+-scenerion based(30)/problem code/4(from hackerrank and leetcode
+-MCQs(100)/25*
+
+
+
+ERROR IDENTIFICATION:
+=====================
+
+1.
+import java.util.HashSet;
+import java.util.Set;
+
+public class Test {
+    public static void main(String[] args) {
+        Set<String> fruits = new HashSet<>();
+        fruits.add("Apple");
+        fruits.add("Banana");
+        fruits.add("Apple");
+        System.out.println(fruits.get(0));
+    }
+}
+
+
+2.import java.util.HashMap;
+import java.util.Map;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<Integer, String> map = new HashMap<>();
+        map.put(1, "One");
+        map.put(1, "Two");
+        System.out.println(map.get(1, "One"));
+    }
+}
+
+
+3.
+import java.util.Map;
+import java.util.TreeMap;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, Integer> map = new TreeMap<>();
+        map.put(null, 1);
+        System.out.println(map);
+    }
+}
+
+
+4.
+import java.util.Set;
+import java.util.HashSet;
+
+public class Test {
+    public static void main(String[] args) {
+        Set<String> set = new HashSet<>();
+        set.add(null);
+        System.out.println(set);
+    }
+}
+
+
+5.
+import java.util.HashSet;
+import java.util.Set;
+
+public class Test {
+    public static void main(String[] args) {
+        Set<String> set = new HashSet<>();
+        set.add("A");
+        set.add("B");
+
+        for (String s : set) {
+            if (s.equals("B")) {
+                set.remove(s);
+            }
+        }
+        System.out.println(set);
+    }
+}
+
+
+6.
+import java.util.TreeSet;
+import java.util.Set;
+
+public class Test {
+    public static void main(String[] args) {
+        Set<String> set = new TreeSet<>();
+        set.add(null);
+        System.out.println(set);
+    }
+}
+
+
+7.
+import java.util.Arrays;
+import java.util.List;
+import java.util.HashSet;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = Arrays.asList("A", "B");
+        Set<String> set = new HashSet<>(list);
+        set.add("C");
+        list.add("D");
+        System.out.println(set);
+    }
+}
+
+
+8.
+import java.util.HashMap;
+import java.util.Map;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<Integer, String> map = new HashMap<>();
+        map.put(1, "One");
+        map.put(2, "Two");
+        map.put(3, "Three");
+        System.out.println(map);
+    }
+}
+
+
+9.
+import java.util.HashMap;
+import java.util.Map;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, Integer> map = new HashMap<>();
+        System.out.println(map.get("key"));
+    }
+}
+
+
+10.
+import java.util.Map;
+import java.util.TreeMap;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<Integer, String> map = new TreeMap<>();
+        map.put(3, "Three");
+        map.put(1, "One");
+        map.put(2, "Two");
+        System.out.println(map);
+    }
+}
+
+
+11.
+import java.util.HashSet;
+import java.util.Set;
+
+public class Test {
+    public static void main(String[] args) {
+        Set set = new HashSet<>();
+        set.add("A");
+        set.add(1);
+        System.out.println(set);
+    }
+}
+
+
+12.
+import java.util.HashMap;
+import java.util.Map;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<Integer, String> map = new HashMap<>();
+        map.put(1, "One");
+        System.out.println(map.get("1"));
+    }
+}
+
+
+13.
+import java.util.HashSet;
+import java.util.Set;
+
+class Employee {
+    int id;
+    Employee(int id) { this.id = id; }
+
+    @Override
+    public int hashCode() { return id; }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Set<Employee> set = new HashSet<>();
+        set.add(new Employee(1));
+        set.add(new Employee(1));
+        System.out.println(set.size());
+    }
+}
+
+
+14.
+import java.util.EnumMap;
+
+enum Day { MON, TUE, WED }
+
+public class Test {
+    public static void main(String[] args) {
+        EnumMap<Day, String> map = new EnumMap<>(Day.class);
+        map.put(Day.MON, "Monday");
+        map.put(null, "Holiday");
+        System.out.println(map);
+    }
+}
+
+
+15.
+import java.util.HashMap;
+import java.util.Map;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<Integer, String> map = new HashMap<>();
+        map.put(1, "One");
+        map.put(1, "New One");
+        System.out.println(map.size());
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+OUTPUT QUESTIONS:
+================
+
+1.What is the output of the following code?
+import java.util.HashMap;
+import java.util.Map;
+public class Test {
+public static void main(String[] args) 
+{
+ Map<Integer, String> map = new HashMap<>();
+ map.put(101, "Red");
+ map.put(103, "Green");
+ map.put(102, "Yellow");
+ 
+ Map<Integer,String> map2 = new HashMap<>();
+ map2.put(115, "Brown");
+ map2.put(120, "Purple");
+ map.putAll(map2);
+ System.out.println(map);
+ }
+}
+
+
+2. What is the output of the following program?
+
+import java.util.HashMap;
+import java.util.Map;
+public class Test {
+public static void main(String[] args) 
+{
+ Map<Integer, String> map = new HashMap<>();
+ map.put(101, "Red");
+ map.put(103, "Green");
+ map.put(102, "Yellow");
+ map.remove(104);
+ map.remove(106,"Pink");
+ System.out.println(map);
+ }
+
+
+3.Is there any error in the program? If not, what is the output of program code?
+
+import java.util.HashMap;
+import java.util.Map;
+public class Test {
+public static void main(String[] args) 
+{
+ Map<String, String> map = new HashMap<>();
+ map.put("A", "Apple");
+ map.put("B", "Boy");
+ map.put("C", "Cat");
+ map.replace("C", "Element");
+ map.remove("A","Apple");
+ System.out.println(map);
+ }
+}
+
+     
+
+
+4. Is code will compile successfully? If yes, what will be the output of the following code?
+
+import java.util.HashMap;
+import java.util.Map;
+public class Test {
+public static void main(String[] args) 
+{
+ Map<String, String> map = new HashMap<>();
+ map.put("V", "Violet");
+ map.put("I", "Indigo");
+ map.put("B", "Blue");
+ map.put("G", "Green");
+ map.put("Y", "Yellow");
+ 
+ String value = map.get("B");
+ System.out.println(value);
+ boolean entryKey = map.containsKey("B");
+ System.out.println(entryKey);
+ boolean entryValue = map.containsValue("Brown");
+ System.out.println(entryValue);
+ }
+}
+
+	  
+5.What will be the output of the following Java program?
+
+ import java.util.*;
+    class Maps 
+    {
+        public static void main(String args[]) 
+        {
+            HashMap obj = new HashMap();
+            obj.put("A", new Integer(1));
+            obj.put("B", new Integer(2));
+            obj.put("C", new Integer(3));
+            System.out.println(obj);
+        }
+    }
+	
+a) {A 1, B 1, C 1}
+b) {A, B, C}
+c) {A-1, B-1, C-1}
+
+
+6. What will be the output of the following Java program?
+
+  import java.util.*;
+    class Maps 
+    {
+        public static void main(String args[]) 
+        {
+            HashMap obj = new HashMap();
+            obj.put("A", new Integer(1));
+            obj.put("B", new Integer(2));
+            obj.put("C", new Integer(3));
+            System.out.println(obj.keySet());
+        }
+    }
+a) [A, B, C]
+b) {A, B, C}
+c) {1, 2, 3}
+d) [1, 2, 3]
+
+7. What will be the output of the following Java program?
+
+    import java.util.*;
+    class Maps 
+    {
+        public static void main(String args[]) 
+        {
+            HashMap obj = new HashMap();
+            obj.put("A", new Integer(1));
+            obj.put("B", new Integer(2));
+            obj.put("C", new Integer(3));
+            System.out.println(obj.get("B"));
+        }
+    }
+a) 1
+b) 2
+c) 3
+d) null
+
+8.What will be the output of the following Java program?
+
+    import java.util.*;
+    class Maps 
+    {
+        public static void main(String args[]) 
+        {
+            TreeMap obj = new TreeMap();
+            obj.put("A", new Integer(1));
+            obj.put("B", new Integer(2));
+            obj.put("C", new Integer(3));
+            System.out.println(obj.entrySet());
+        }
+    }
+a) [A, B, C]
+b) [1, 2, 3]
+c) {A=1, B=2, C=3}
+d) [A=1, B=2, C=3]
+
+9.
+// Java Program Implementing HashMap
+import java.util.HashMap;
+import java.util.Map;
+
+public class MapCreationExample {
+    
+      public static void main(String[] args) 
+    {
+      
+        // Create a Map using HashMap
+        Map<String, Integer> map = new HashMap<>();
+                
+        // Displaying the Map
+        System.out.println("Map elements: " + map);
+    }
+}
+
+10.// Java Program to Demonstrate
+// Working of Map interface
+
+// Importing required classes
+import java.util.*;
+
+// Main class
+class GFG {
+
+    // Main driver method
+    public static void main(String args[])
+    {
+        // Creating an empty HashMap
+        Map<String, Integer> hm
+            = new HashMap<String, Integer>();
+
+        // Inserting pairs in above Map
+        // using put() method
+        hm.put("a", new Integer(100));
+        hm.put("b", new Integer(200));
+        hm.put("c", new Integer(300));
+        hm.put("d", new Integer(400));
+
+        // Traversing through Map using for-each loop
+        for (Map.Entry<String, Integer> me :
+             hm.entrySet()) {
+
+            // Printing keys
+            System.out.print(me.getKey() + ":");
+            System.out.println(me.getValue());
+        }
+    }
+}
+
+
+11.
+import java.util.HashMap;
+import java.util.Map;
+ 
+/** Copyright (c), AnkitMittal JavaMadeSoEasy.com */
+public class MyClass {
+    public static void main(String args[]) {
+           Map<String, String> hashMap = new HashMap<String, String>();
+           hashMap.put(new String("a"), "audi");
+           hashMap.put(new String("a"), "ferrari");
+           System.out.println(hashMap);
+    }
+ 
+}
+
+
+12.
+import java.util.IdentityHashMap;
+import java.util.Map;
+ 
+/** Copyright (c), AnkitMittal JavaMadeSoEasy.com */
+public class MyClass {
+    public static void main(String args[]) {
+           Map<String, String> identityHashMap = new IdentityHashMap<String, String>();
+           identityHashMap.put(new String("a"), "audi");
+           identityHashMap.put(new String("a"), "ferrari");
+           System.out.println(identityHashMap);
+    }
+}
+
+
+13.
+import java.util.Map;
+import java.util.TreeMap;
+ 
+/** Copyright (c), AnkitMittal JavaMadeSoEasy.com */
+public class TreeMapTest {
+    public static void main(String args[]) {
+ 
+           Map<Integer, String> m = new TreeMap<Integer, String>();
+           m.put(11, "audi");
+           m.put(null, null);
+           m.put(11, "bmw");
+           m.put(null, "fer");
+ 
+           System.out.println(m.size());
+           System.out.println(m);
+    }
+ 
+}
+
+
+14.
+import java.util.Arrays;
+import java.util.Comparator;
+ 
+/** Copyright (c), AnkitMittal JavaMadeSoEasy.com */
+public class MyClass {
+    public static void main(String[] args) {
+           String[] ar = { "c", "d", "b", "a", "e" };
+           NestedClass in = new NestedClass();
+           Arrays.sort(ar, in);
+           for (String str : ar)
+                  System.out.print(str + " ");
+           System.out.println(Arrays.binarySearch(ar, "b"));
+    }
+ 
+    static class NestedClass implements Comparator<String> {
+           public int compare(String s1, String s2) {
+                  return s2.compareTo(s1);
+           }
+    }
+}
+
+
+15.
+import java.util.LinkedHashSet;
+import java.util.Set;
+ 
+/** Copyright (c), AnkitMittal JavaMadeSoEasy.com */
+public class LinkedHashSetTest {
+    public static void main(String args[]) {
+ 
+           Set s = new LinkedHashSet();
+           s.add("1");
+           s.add(1);
+           s.add(3);
+           s.add(2);
+           System.out.println(s);
+ 
+    }
+}
+
+
+
+
+
+SCENARIO BASED QUESTIONS
+=========================
+
+1: Caching
+You need to load stock exchange security codes with price from a database and cache them for performance. The security codes need to be
+refreshed say every 30 minutes. This cached data needs to be populated and refreshed by a single writer thread and read by several reader
+threads. How will you ensure that your read/write solution is scalable and thread safe?
+
+
+2.
+Detect Duplicate Entries in a List
+Scenario:
+You are given a list of student names. Some students have mistakenly registered multiple times. Write a Java program using a Set to detect 
+and display the duplicate student names.
+Hint: Use a HashSet to track seen names and identify duplicates.
+
+3.
+Maps-STL: You are appointed as the assistant to a teacher in a school and she is correcting the answer sheets of the students. Each student can 
+have multiple answer sheets. The teacher has queries to add marks, erase marks, and print marks for students. 
+
+
+4.
+Day 8: Dictionaries and Maps: You are given a phone book consisting of people's names and their phone numbers. After that, you will be given some 
+person's name as a query. For each query, print the phone number of that person. 
+
+5.
+Sets-STL: You are given queries to add elements to a set, delete elements from a set, and check if an element is present in the set. 
+
+6.
+Set Mutations: You are given two sets and a series of mutations to perform on the first set, including union, intersection, difference,
+ and symmetric difference operations. 
+
+7.
+Two Out of Three
+Problem Statement:
+Given three integer arrays nums1, nums2, and nums3, return a list of all integers that appear at least once in two of the three arrays.
+The result should be sorted in ascending order.
+Example:
+java
+Copy
+Edit
+Input: nums1 = [1,1,3,2], nums2 = [2,3], nums3 = [3]
+Output: [3]
+Solution Approach:
+Utilize a Set to store unique elements from each array. Then, iterate through the sets to find elements that appear in at least two sets.
+
+
+8.
+Design HashMap
+Problem Statement:
+Design a HashMap without using any built-in hash table libraries. Implement the MyHashMap class with the following methods:
+put(int key, int value): Inserts a (key, value) pair into the HashMap. If the key already exists, update the value.
+get(int key): Returns the value to which the specified key is mapped, or -1 if the key does not exist.
+remove(int key): Removes the key and its corresponding value if the key exists.
+Solution Approach:
+Implement the HashMap using an array of linked lists to handle collisions. Each index in the array represents a bucket, and each bucket contains a 
+list of key-value pairs.
+
+
+9.
+Intersection of Two Arrays
+Problem Statement:
+Given two integer arrays nums1 and nums2, return an array of their intersection. Each element in the result must appear as many times as it shows 
+in both arrays. The result can be returned in any order.
+Example:
+java
+Copy
+Edit
+Input: nums1 = [1,2,2,1], nums2 = [2,2]
+Output: [2,2]
+Solution Approach:
+Use a Map to count the occurrences of each element in the first array. Then, iterate through the second array, and for each element, check if it 
+exists in the map with a non-zero count. If it does, add it to the result and decrement its count in the map.
+
+
+10.
+Find and Replace Pattern
+Problem Statement:
+Given a list of strings words and a string pattern, return a list of words[i] that match pattern. A word matches the pattern if there exists a 
+bijection between every letter in pattern and every letter in the word.
+Example:
+java
+Copy
+Edit
+Input: words = ["abc","deq","mee","aqq","dkd","ccc"], pattern = "abb"
+Output: ["mee","aqq"]
+Solution Approach:
+Create a helper function to check if a word matches the pattern by mapping each character in the pattern to a character in the word using a Map.
+
+
+
+
+
+
+
+
+
+
+
+
+MCQS
+====
+
+1.Which of these object stores association between keys and values?
+a) Hash table
+b) Map
+c) Array
+d) String
+
+2.Which of these classes provide implementation of map interface?
+a) ArrayList
+b) HashMap
+c) LinkedList
+d) DynamicList
+
+3.Which of these method is used to remove all keys/values pair from the invoking map?
+a) delete()
+b) remove()
+c) clear()
+d) removeAll()
+
+4.Which of these method Map class is used to obtain an element in the map having specified key?
+a) search()
+b) get()
+c) set()
+d) look()
+
+5.Which of these methods can be used to obtain set of all keys in a map?
+a) getAll()
+b) getKeys()
+c) keyall()
+d) keySet()
+
+6.Which of these method is used to add an element and corresponding key to a map?
+a) put()
+b) set()
+c) redo()
+d) add()
+
+7.Which of these classes implements Set interface?
+a) ArrayList
+b) HashSet
+c) LinkedList
+d) DynamicList
+
+8.Which of these method of HashSet class is used to add elements to its object?
+a) add()
+b) Add()
+c) addFirst()
+d) insert()
+
+9.Which collection allows you to retrieve elements in the order they were inserted?
+a) ArrayList
+b) LinkedList
+c) LinkedHashMap
+d) LinkedHashSet
+
+10.Which collection class provides a way to store elements in key-value pairs with no duplicate keys?
+a) ArrayList
+b) Hashtable
+c) TreeMap
+d) LinkedHashMap
+
+11.Which one of the following collection classes can be used to store unique & sorted objects?
+a) HashSet
+b) TreeSet
+c) LinkedHashMap
+d) ArrayList
+
+12.Which collection class allows duplicate elements and maintains their insertion order?
+a) HashSet
+b) TreeSet
+c) LinkedHashSet
+d) HashMap
+
+13.Which method is used to check if a specific element is present in a Set?
+a) containsElement()
+b) containsKey()
+c) containsValue()
+d) contains()
+
+14.Which collection class in Java stores objects in the form of key-value pairs and maintains the order in which they were inserted?
+a) Hashtable
+b) LinkedHashMap
+c) TreeMap
+d) HashSet
+
+15.Which collection class is synchronized and thread-safe?
+a) ArrayList
+b) HashSet
+c) ConcurrentHashMap
+d) LinkedList
+
+16.Which collection class in Java provides a fixed-size collection that does not allow adding or removing elements?
+a) ArrayList
+b) LinkedList
+c) HashSet
+d) Arrays
+
+17.What is the main difference between HashSet and TreeSet in Java?
+a) HashSet allows duplicate elements, while TreeSet does not.
+b) HashSet maintains insertion order, while TreeSet does not.
+c) HashSet is unsorted, while TreeSet is sorted.
+d) TreeSet allows null values, while HashSet does not.
+
+18.Which collection class in Java does not allow null values?
+a) HashSet
+b) ArrayList
+c) HashMap
+d) TreeSet
+
+19.Which collection class in Java is best suited for frequent search operations on a large collection?
+a) HashSet
+b) ArrayList
+c) LinkedList
+d) TreeMap
+
+20.Which Map class must be preferred in multi-threading environment to maintain natural order of keys?
+a) ConcurrentHashMap
+b) ConcurrentSkipListMap
+c) ConcurrentMap
+d) all
+
+21.TreeMap implements?
+a) Dictionary
+b) HashMap
+c) AbstractMap
+d) NavigableMap
+
+22.Which Set class must be preferred in multi-threading environment, considering performance constraint?
+a) HashSet
+b) ConcurrentSkipListSet
+c) LinkedHashSet
+d) CopyOnWriteArraySet
+
+23.Which Map class must be preferred in multi-threading environment, considering performance constraint?
+a) Hashtable
+b) CopyOnWriteMap
+c) ConcurrentHashMap
+d) ConcurrentMap
+
+24.Which of these is synchronized?
+a) TreeMap
+b) HashMap
+c) Hashtable
+d) All
+
+25.Which is the best performance Map implementation?
+a) TreeMap
+b) HashMap
+c) LinkedHashMap
+d) All are equal
+
+26.Which of these is a thread-safe variant of ArrayList?
+a) Vector
+b) CopyOnWriteArrayList
+c) LinkedList
+d) HashSet
+
+27.Which Java collection allows only unique elements and provides constant-time performance for basic operations?
+a) ArrayList
+b) HashSet
+c) LinkedList
+d) HashMap
+
+28.Which of these methods is used to compare two sets for equality?
+a) equals()
+b) compareTo()
+c) isEqual()
+d) compare()
+
+29.Which data structure is used internally by a HashMap for collision resolution in Java 8?
+a) LinkedList
+b) TreeMap
+c) Binary Tree
+d) Red-Black Tree
+
+30.Which of these collections implements a LIFO (Last-In-First-Out) structure?
+a) Queue
+b) LinkedList
+c) Stack
+d) PriorityQueue
+
+31.What happens if you try to insert a duplicate key in a HashMap?
+a) It throws an exception
+b) The old value is replaced with the new one
+c) The duplicate key is ignored
+d) It creates a new entry
+
+32.Which of these methods is used to obtain all keys in a Map?
+a) getKeys()
+b) keySet()
+c) fetchKeys()
+d) mapKeys()
+
+33.Which of these is NOT a method in the Map interface?
+a) get()
+b) put()
+c) add()
+d) containsKey()
+
+34.Which collection is best suited for implementing a priority queue?
+a) ArrayList
+b) LinkedList
+c) PriorityQueue
+d) HashSet
+
+35.Which Map implementation provides a thread-safe and lock-free approach to retrieving data?
+a) HashMap
+b) Hashtable
+c) ConcurrentHashMap
+d) TreeMap
+
+36.Which of these collections maintains elements in natural ordering?
+a) HashSet
+b) TreeSet
+c) ArrayList
+d) HashMap
+
+37.Which of these collections does NOT allow null keys?
+a) HashMap
+b) TreeMap
+c) LinkedHashMap
+d) WeakHashMap
+
+38.Which Map class stores keys and values in sorted order?
+a) TreeMap
+b) LinkedHashMap
+c) HashMap
+d) HashTable
+
+39.Which Set class stores unique elements in sorted order?
+a) HashSet
+b) TreeSet
+c) LinkedHashSet
+d) PrioritySet
+
+40.Which of these methods is used to remove an element from a Set?
+a) delete()
+b) remove()
+c) discard()
+d) pop()
+
+41.Which of these methods removes all mappings from a Map?
+a) clear()
+b) remove()
+c) delete()
+d) empty()
+
+42.Which method does the Map interface use to insert or update a key-value pair?
+a) insert()
+b) add()
+c) put()
+d) append()
+
+43.Which of these collection types can be used when maintaining unique, sorted data without duplicates?
+a) HashSet
+b) TreeSet
+c) ArrayList
+d) PriorityQueue
+
+44.Which interface does LinkedHashMap implement in addition to Map?
+a) Set
+b) List
+c) NavigableMap
+d) SortedMap
+
+45.What is the maximum number of null elements that a TreeSet can store?
+a) None
+b) One
+c) Two
+d) Any number
+
+46.Which class does not allow duplicates and maintains insertion order?
+a) TreeSet
+b) HashSet
+c) LinkedHashSet
+d) LinkedList
+
+47.Which of these collections can store both key-value pairs and also maintains the order of insertion?
+a) TreeMap
+b) LinkedHashMap
+c) HashMap
+d) ArrayList
+
+48.Which of these Map implementations is best for high-performance operations when frequent access and updates are required?
+a) LinkedHashMap
+b) HashMap
+c) TreeMap
+d) Hashtable
+
+49.Which of the following is NOT a valid implementation of the Set interface in Java?
+a) HashSet
+b) LinkedHashSet
+c) TreeSet
+d) PrioritySet
+
+50.What does the entrySet() method in a Map return?
+a) A Set of keys
+b) A Set of values
+c) A Set of key-value pairs
+d) A Map of key-value pairs
